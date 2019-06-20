@@ -13,15 +13,21 @@ class GameScene: SKScene {
     private var lastUpdateTime : TimeInterval = 0
     private var currentRainDropSpawnTime : TimeInterval = 0
     private var rainDropSpawnRate : TimeInterval = 0.5
+    private let raindropTexture = SKTexture(imageNamed: "rain_drop")
     
     private let backgroundNode = BackgroundNode()
-    let raindropTexture = SKTexture(imageNamed: "rain_drop")
+    private let umbrellaNode = UmbrellaSprite.newInstance()
+
     
     
     override func sceneDidLoad() {
         self.lastUpdateTime = 0
         backgroundNode.setup(size: size)
         addChild(backgroundNode)
+        
+        umbrellaNode.updatePosition(CGPoint(x: frame.midX, y: frame.midY))
+        umbrellaNode.zPosition = 4
+        addChild(umbrellaNode)
         
         var worldFrame = frame
         worldFrame.origin.x -= 100
@@ -37,11 +43,13 @@ class GameScene: SKScene {
     
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-
+        guard let touchPoint = touches.first?.location(in: self) else { return }
+        umbrellaNode.setDestination(touchPoint)
     }
     
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
-        
+        guard let touchPoint = touches.first?.location(in: self) else { return }
+        umbrellaNode.setDestination(touchPoint)
     }
     
     override func update(_ currentTime: TimeInterval) {
@@ -62,6 +70,8 @@ class GameScene: SKScene {
             currentRainDropSpawnTime = 0
             spawnRaindrop()
         }
+        
+        umbrellaNode.update(deltaTime: dt)
         
         self.lastUpdateTime = currentTime
     }
