@@ -10,14 +10,30 @@ import SpriteKit
 
 public class CatSprite: SKSpriteNode {
     private let movementSpeed = CGFloat(100)
+
     private var timeSinceLastHit = TimeInterval(2)
     private let maxFlailTime = TimeInterval(2)
+    private var isFlailing: Bool {
+        return timeSinceLastHit < maxFlailTime
+    }
+
+    //private var currentRainHits = 4
+    //private let maxRainHits = 4
 
     private let rotateActionKey = "action_rotate"
     private let walkingActionKey = "action_walking"
+    private let meowActionKey = "action_meow"
+
     private let walkFrames = [
         SKTexture(imageNamed: "cat_one"),
         SKTexture(imageNamed: "cat_two")
+    ]
+
+    private let meowSFX = [
+        "cat_meow_1.mp3",
+        "cat_meow_2.mp3",
+        "cat_meow_4.mp3",
+        "cat_meow_6.mp3"
     ]
 
     public static func newInstance() -> CatSprite {
@@ -31,21 +47,29 @@ public class CatSprite: SKSpriteNode {
     }
 
     public func hitByRain() {
-        timeSinceLastHit = 0
+        defer { timeSinceLastHit = 0 }
         removeAction(forKey: walkingActionKey)
+
+//        guard currentRainHits >= maxRainHits else {
+//            currentRainHits += 1
+//            return
+//        }
+
+        guard !isFlailing && action(forKey: meowActionKey) == nil else { return }
+        run(.playSoundFileNamed(meowSFX.randomElement()!, waitForCompletion: true), withKey: meowActionKey)
     }
 
     public func update(deltaTime: TimeInterval, foodLocation: CGPoint) {
         timeSinceLastHit += deltaTime
 
-        guard timeSinceLastHit >= maxFlailTime else {
+        guard !isFlailing else {
             // still flailing, do nothing
             return
         }
 
         // fix rotation if cat is not flailing
         if zRotation != 0 && action(forKey: rotateActionKey) == nil {
-            run(SKAction.rotate(toAngle: 0, duration: 0.25), withKey: rotateActionKey)
+            run(.rotate(toAngle: 0, duration: 0.25), withKey: rotateActionKey)
         }
 
         physicsBody?.angularVelocity = 0
@@ -60,7 +84,7 @@ public class CatSprite: SKSpriteNode {
 
         // cat is on the way to the food, start walking animation
         if action(forKey: walkingActionKey) == nil {
-            let walkingAction = SKAction.repeatForever(SKAction.animate(with: walkFrames, timePerFrame: 0.1, resize: false, restore: true))
+            let walkingAction = SKAction.repeatForever(.animate(with: walkFrames, timePerFrame: 0.1, resize: false, restore: true))
             run(walkingAction, withKey: walkingActionKey)
         }
 
