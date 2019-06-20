@@ -32,7 +32,11 @@ func &(left: Category, right: Category) -> Category {
 
 extension SKPhysicsBody {
     func isCategory(_ category: Category) -> Bool {
-        return self.categoryBitMask == category.bitMask
+        return self.category == category
+    }
+
+    var category: Category {
+        return Category(bitMask: categoryBitMask)
     }
 }
 
@@ -74,4 +78,25 @@ extension Category {
     static let floor = Category(shift: 3)
     static let cat = Category(shift: 4)
     static let food = Category(shift: 5)
+}
+
+extension Category: CustomStringConvertible {
+    var description: String {
+        switch self {
+        case .world:
+            return "world"
+        case .raindrop:
+            return "raindrop"
+        case .floor:
+            return "floor"
+        case .cat:
+            return "cat"
+        case .food:
+            return "food"
+        default:
+            return String(bitMask)
+        }
+    }
+
+
 }
