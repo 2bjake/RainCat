@@ -105,15 +105,9 @@ class GameScene: SKScene {
 extension GameScene: SKPhysicsContactDelegate {
 
     private func handleCatCollision(contact: SKPhysicsContact) {
-        let otherBody: SKPhysicsBody
+        guard let (_, other) = contact.mainBodyAs(.cat) else { return }
 
-        if contact.bodyA.isCategory(.cat) {
-            otherBody = contact.bodyB
-        } else {
-            otherBody = contact.bodyA
-        }
-
-        switch Category(bitMask: otherBody.categoryBitMask) {
+        switch Category(bitMask: other.categoryBitMask) {
         case .raindrop:
             print("rain hit the cat")
         case .world:
@@ -124,12 +118,9 @@ extension GameScene: SKPhysicsContactDelegate {
     }
 
     func didBegin(_ contact: SKPhysicsContact) {
-        if contact.bodyA.isCategory(.raindrop) {
-            contact.bodyA.node?.physicsBody?.collisionBitMask = 0
-            contact.bodyA.node?.physicsBody?.categoryBitMask = 0
-        } else if contact.bodyB.isCategory(.raindrop) {
-            contact.bodyB.node?.physicsBody?.collisionBitMask = 0
-            contact.bodyB.node?.physicsBody?.categoryBitMask = 0
+        if let raindrop = contact.firstBodyAs(.raindrop) {
+            raindrop.node?.physicsBody?.collisionBitMask = 0
+            raindrop.node?.physicsBody?.categoryBitMask = 0
         }
 
         if contact.hasCategory(.cat) {
@@ -137,14 +128,10 @@ extension GameScene: SKPhysicsContactDelegate {
             return
         }
 
-        if contact.bodyA.isCategory(.world) {
-            contact.bodyB.node?.removeFromParent()
-            contact.bodyB.node?.physicsBody = nil
-            contact.bodyB.node?.removeAllActions()
-        } else if contact.bodyB.isCategory(.world) {
-            contact.bodyA.node?.removeFromParent()
-            contact.bodyA.node?.physicsBody = nil
-            contact.bodyA.node?.removeAllActions()
+        if let (_, other) = contact.mainBodyAs(.world) {
+            other.node?.removeFromParent()
+            other.node?.physicsBody = nil
+            other.node?.removeAllActions()
         }
     }
 }

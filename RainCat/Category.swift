@@ -38,7 +38,25 @@ extension SKPhysicsBody {
 
 extension SKPhysicsContact {
     func hasCategory(_ category: Category) -> Bool {
-        return bodyA.isCategory(category) || bodyB.isCategory(category)
+        return mainBodyAs(category) != nil
+    }
+
+    func mainBodyAs(_ category: Category) -> (main: SKPhysicsBody, other: SKPhysicsBody)? {
+        if bodyA.isCategory(category) {
+            return (bodyA, bodyB)
+        } else if bodyB.isCategory(category) {
+            return (bodyB, bodyA)
+        } else {
+            return nil
+        }
+    }
+
+    func firstBodyAs(_ category: Category) -> SKPhysicsBody? {
+        if let (main, _) = mainBodyAs(category) {
+            return main
+        } else {
+            return nil
+        }
     }
 }
 
