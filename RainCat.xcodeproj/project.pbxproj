@@ -8,8 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		231406F622BB2D6300659ED7 /* BackgroundNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 231406F522BB2D6300659ED7 /* BackgroundNode.swift */; };
-		231406F822BB31A300659ED7 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 231406F722BB31A300659ED7 /* Constants.swift */; };
 		231406FA22BBB4F400659ED7 /* UmbrellaSprite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 231406F922BBB4F400659ED7 /* UmbrellaSprite.swift */; };
+		231406FC22BBBF6700659ED7 /* CatSprite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 231406FB22BBBF6700659ED7 /* CatSprite.swift */; };
+		231406FE22BBC90800659ED7 /* FoodSprite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 231406FD22BBC90800659ED7 /* FoodSprite.swift */; };
+		2314070022BBCB1000659ED7 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 231406FF22BBCB1000659ED7 /* Category.swift */; };
 		BBA2E4A61D74A62C00853E63 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBA2E4A51D74A62C00853E63 /* AppDelegate.swift */; };
 		BBA2E4AC1D74A62C00853E63 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBA2E4AB1D74A62C00853E63 /* GameScene.swift */; };
 		BBA2E4AE1D74A62C00853E63 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBA2E4AD1D74A62C00853E63 /* GameViewController.swift */; };
@@ -20,8 +22,10 @@
 
 /* Begin PBXFileReference section */
 		231406F522BB2D6300659ED7 /* BackgroundNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundNode.swift; sourceTree = "<group>"; };
-		231406F722BB31A300659ED7 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		231406F922BBB4F400659ED7 /* UmbrellaSprite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UmbrellaSprite.swift; sourceTree = "<group>"; };
+		231406FB22BBBF6700659ED7 /* CatSprite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatSprite.swift; sourceTree = "<group>"; };
+		231406FD22BBC90800659ED7 /* FoodSprite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodSprite.swift; sourceTree = "<group>"; };
+		231406FF22BBCB1000659ED7 /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 		BBA2E4A21D74A62C00853E63 /* RainCat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RainCat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BBA2E4A51D74A62C00853E63 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BBA2E4AB1D74A62C00853E63 /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = GameScene.swift; path = Scenes/GameScene.swift; sourceTree = "<group>"; };
@@ -66,7 +70,7 @@
 				BBA2E4B21D74A62C00853E63 /* Assets.xcassets */,
 				BBA2E4B41D74A62C00853E63 /* LaunchScreen.storyboard */,
 				BBA2E4B71D74A62C00853E63 /* Info.plist */,
-				231406F722BB31A300659ED7 /* Constants.swift */,
+				231406FF22BBCB1000659ED7 /* Category.swift */,
 			);
 			name = Support;
 			sourceTree = "<group>";
@@ -104,6 +108,8 @@
 			children = (
 				231406F522BB2D6300659ED7 /* BackgroundNode.swift */,
 				231406F922BBB4F400659ED7 /* UmbrellaSprite.swift */,
+				231406FB22BBBF6700659ED7 /* CatSprite.swift */,
+				231406FD22BBC90800659ED7 /* FoodSprite.swift */,
 			);
 			name = Sprites;
 			sourceTree = "<group>";
@@ -183,8 +189,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				231406FA22BBB4F400659ED7 /* UmbrellaSprite.swift in Sources */,
-				231406F822BB31A300659ED7 /* Constants.swift in Sources */,
+				231406FC22BBBF6700659ED7 /* CatSprite.swift in Sources */,
+				231406FE22BBC90800659ED7 /* FoodSprite.swift in Sources */,
 				BBA2E4AC1D74A62C00853E63 /* GameScene.swift in Sources */,
+				2314070022BBCB1000659ED7 /* Category.swift in Sources */,
 				231406F622BB2D6300659ED7 /* BackgroundNode.swift in Sources */,
 				BBA2E4AE1D74A62C00853E63 /* GameViewController.swift in Sources */,
 				BBA2E4A61D74A62C00853E63 /* AppDelegate.swift in Sources */,

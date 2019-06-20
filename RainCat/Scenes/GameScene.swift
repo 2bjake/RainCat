@@ -17,9 +17,8 @@ class GameScene: SKScene {
     
     private let backgroundNode = BackgroundNode()
     private let umbrellaNode = UmbrellaSprite.newInstance()
+    private var catNode: CatSprite?
 
-    
-    
     override func sceneDidLoad() {
         self.lastUpdateTime = 0
         backgroundNode.setup(size: size)
@@ -28,6 +27,8 @@ class GameScene: SKScene {
         umbrellaNode.updatePosition(CGPoint(x: frame.midX, y: frame.midY))
         umbrellaNode.zPosition = 4
         addChild(umbrellaNode)
+
+        spawnCat()
         
         var worldFrame = frame
         worldFrame.origin.x -= 100
@@ -36,7 +37,7 @@ class GameScene: SKScene {
         worldFrame.size.width += 200
         
         self.physicsBody = SKPhysicsBody(edgeLoopFrom: worldFrame)
-        self.physicsBody?.categoryBitMask = PhysicsCategory.world
+        self.physicsBody?.categoryBitMask = BitMask(.world)
         
         self.physicsWorld.contactDelegate = self
     }
@@ -79,31 +80,68 @@ class GameScene: SKScene {
     private func spawnRaindrop() {
         let raindrop = SKSpriteNode(texture: raindropTexture)
         raindrop.physicsBody = SKPhysicsBody(texture: raindropTexture, size: raindrop.size)
-        raindrop.physicsBody?.categoryBitMask = PhysicsCategory.raindrop
-        raindrop.physicsBody?.contactTestBitMask = PhysicsCategory.floor | PhysicsCategory.world
+        raindrop.physicsBody?.categoryBitMask = BitMask(.raindrop)
+        raindrop.physicsBody?.contactTestBitMask = BitMask(.floor | .world)
         let xPos = CGFloat.random(in: 0..<size.width)
         let yPos = size.height + raindrop.size.height
         raindrop.position = CGPoint(x: xPos, y: yPos)
         raindrop.zPosition = 2
         addChild(raindrop)
     }
+
+    private func spawnCat() {
+        if let currentCat = catNode, children.contains(currentCat) {
+            currentCat.removeFromParent()
+            currentCat.removeAllActions()
+            currentCat.physicsBody = nil
+        }
+        catNode = CatSprite.newInstance()
+        catNode?.position = CGPoint(x: umbrellaNode.position.x, y: umbrellaNode.position.y - 30)
+
+        addChild(catNode!)
+    }
 }
 
 extension GameScene: SKPhysicsContactDelegate {
+
+    private func handleCatCollision(contact: SKPhysicsContact) {
+        let otherBody: SKPhysicsBody
+
+        if contact.bodyA.isCategory(.cat) {
+            otherBody = contact.bodyB
+        } else {
+            otherBody = contact.bodyA
+        }
+
+        switch Category(bitMask: otherBody.categoryBitMask) {
+        case .raindrop:
+            print("rain hit the cat")
+        case .world:
+            spawnCat()
+        default:
+            print("something hit the cat")
+        }
+    }
+
     func didBegin(_ contact: SKPhysicsContact) {
-        if contact.bodyA.categoryBitMask == PhysicsCategory.raindrop {
+        if contact.bodyA.isCategory(.raindrop) {
             contact.bodyA.node?.physicsBody?.collisionBitMask = 0
             contact.bodyA.node?.physicsBody?.categoryBitMask = 0
-        } else if contact.bodyB.categoryBitMask == PhysicsCategory.raindrop {
+        } else if contact.bodyB.isCategory(.raindrop) {
             contact.bodyB.node?.physicsBody?.collisionBitMask = 0
             contact.bodyB.node?.physicsBody?.categoryBitMask = 0
         }
 
-        if contact.bodyA.categoryBitMask == PhysicsCategory.world {
+        if contact.hasCategory(.cat) {
+            handleCatCollision(contact: contact)
+            return
+        }
+
+        if contact.bodyA.isCategory(.world) {
             contact.bodyB.node?.removeFromParent()
             contact.bodyB.node?.physicsBody = nil
             contact.bodyB.node?.removeAllActions()
-        } else if contact.bodyB.categoryBitMask == PhysicsCategory.world {
+        } else if contact.bodyB.isCategory(.world) {
             contact.bodyA.node?.removeFromParent()
             contact.bodyA.node?.physicsBody = nil
             contact.bodyA.node?.removeAllActions()

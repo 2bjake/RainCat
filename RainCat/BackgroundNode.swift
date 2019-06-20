@@ -17,8 +17,8 @@ public class BackgroundNode: SKNode {
 
         physicsBody = .init(edgeFrom: startPoint, to: endPoint)
         physicsBody?.restitution = 0.3
-        physicsBody?.categoryBitMask = PhysicsCategory.floor
-        physicsBody?.contactTestBitMask = PhysicsCategory.raindrop
+        physicsBody?.categoryBitMask = BitMask(.floor)
+        physicsBody?.contactTestBitMask = BitMask(.raindrop)
         
         let skyNode = SKShapeNode(rect: CGRect(origin: CGPoint(), size: size))
         skyNode.fillColor = SKColor(red:0.38, green:0.60, blue:0.65, alpha:1.0)
