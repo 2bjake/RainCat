@@ -17,9 +17,6 @@ public class CatSprite: SKSpriteNode {
         return timeSinceLastHit < maxFlailTime
     }
 
-    //private var currentRainHits = 4
-    //private let maxRainHits = 4
-
     private let rotateActionKey = "action_rotate"
     private let walkingActionKey = "action_walking"
     private let meowActionKey = "action_meow"
@@ -49,11 +46,6 @@ public class CatSprite: SKSpriteNode {
     public func hitByRain() {
         defer { timeSinceLastHit = 0 }
         removeAction(forKey: walkingActionKey)
-
-//        guard currentRainHits >= maxRainHits else {
-//            currentRainHits += 1
-//            return
-//        }
 
         guard !isFlailing && action(forKey: meowActionKey) == nil else { return }
         run(.playSoundFileNamed(meowSFX.randomElement()!, waitForCompletion: true), withKey: meowActionKey)

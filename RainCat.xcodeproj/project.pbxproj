@@ -14,9 +14,6 @@
 		2314070022BBCB1000659ED7 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 231406FF22BBCB1000659ED7 /* Category.swift */; };
 		2314070C22BBFE6B00659ED7 /* cat_meow_2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2314070522BBFE6A00659ED7 /* cat_meow_2.mp3 */; };
 		2314070D22BBFE6B00659ED7 /* cat_meow_4.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2314070622BBFE6A00659ED7 /* cat_meow_4.mp3 */; };
-		2314070E22BBFE6B00659ED7 /* cat_meow_3.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2314070722BBFE6A00659ED7 /* cat_meow_3.mp3 */; };
-		2314070F22BBFE6B00659ED7 /* cat_meow_7.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2314070822BBFE6A00659ED7 /* cat_meow_7.mp3 */; };
-		2314071022BBFE6B00659ED7 /* cat_meow_5.wav in Resources */ = {isa = PBXBuildFile; fileRef = 2314070922BBFE6A00659ED7 /* cat_meow_5.wav */; };
 		2314071122BBFE6B00659ED7 /* cat_meow_6.wav in Resources */ = {isa = PBXBuildFile; fileRef = 2314070A22BBFE6A00659ED7 /* cat_meow_6.wav */; };
 		2314071222BBFE6B00659ED7 /* cat_meow_1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2314070B22BBFE6A00659ED7 /* cat_meow_1.mp3 */; };
 		2314071822BC024600659ED7 /* bensound-littleidea.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2314071422BC024600659ED7 /* bensound-littleidea.mp3 */; };
@@ -40,9 +37,6 @@
 		231406FF22BBCB1000659ED7 /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 		2314070522BBFE6A00659ED7 /* cat_meow_2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = cat_meow_2.mp3; path = SFX/cat_meow_2.mp3; sourceTree = "<group>"; };
 		2314070622BBFE6A00659ED7 /* cat_meow_4.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = cat_meow_4.mp3; path = SFX/cat_meow_4.mp3; sourceTree = "<group>"; };
-		2314070722BBFE6A00659ED7 /* cat_meow_3.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = cat_meow_3.mp3; path = SFX/cat_meow_3.mp3; sourceTree = "<group>"; };
-		2314070822BBFE6A00659ED7 /* cat_meow_7.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = cat_meow_7.mp3; path = SFX/cat_meow_7.mp3; sourceTree = "<group>"; };
-		2314070922BBFE6A00659ED7 /* cat_meow_5.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = cat_meow_5.wav; path = SFX/cat_meow_5.wav; sourceTree = "<group>"; };
 		2314070A22BBFE6A00659ED7 /* cat_meow_6.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = cat_meow_6.wav; path = SFX/cat_meow_6.wav; sourceTree = "<group>"; };
 		2314070B22BBFE6A00659ED7 /* cat_meow_1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = cat_meow_1.mp3; path = SFX/cat_meow_1.mp3; sourceTree = "<group>"; };
 		2314071422BC024600659ED7 /* bensound-littleidea.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = "bensound-littleidea.mp3"; path = "Music/bensound-littleidea.mp3"; sourceTree = "<group>"; };
@@ -76,11 +70,8 @@
 			children = (
 				2314070B22BBFE6A00659ED7 /* cat_meow_1.mp3 */,
 				2314070522BBFE6A00659ED7 /* cat_meow_2.mp3 */,
-				2314070722BBFE6A00659ED7 /* cat_meow_3.mp3 */,
 				2314070622BBFE6A00659ED7 /* cat_meow_4.mp3 */,
-				2314070922BBFE6A00659ED7 /* cat_meow_5.wav */,
 				2314070A22BBFE6A00659ED7 /* cat_meow_6.wav */,
-				2314070822BBFE6A00659ED7 /* cat_meow_7.mp3 */,
 			);
 			name = SFX;
 			sourceTree = "<group>";
@@ -231,11 +222,8 @@
 				2314071A22BC024600659ED7 /* bensound-jazzyfrenchy.mp3 in Resources */,
 				2314071822BC024600659ED7 /* bensound-littleidea.mp3 in Resources */,
 				BBA2E4B11D74A62C00853E63 /* Main.storyboard in Resources */,
-				2314070F22BBFE6B00659ED7 /* cat_meow_7.mp3 in Resources */,
 				2314071922BC024600659ED7 /* bensound-jazzcomedy.mp3 in Resources */,
 				2314070D22BBFE6B00659ED7 /* cat_meow_4.mp3 in Resources */,
-				2314070E22BBFE6B00659ED7 /* cat_meow_3.mp3 in Resources */,
-				2314071022BBFE6B00659ED7 /* cat_meow_5.wav in Resources */,
 				BBA2E4B31D74A62C00853E63 /* Assets.xcassets in Resources */,
 				2314071222BBFE6B00659ED7 /* cat_meow_1.mp3 in Resources */,
 				2314071122BBFE6B00659ED7 /* cat_meow_6.wav in Resources */,
