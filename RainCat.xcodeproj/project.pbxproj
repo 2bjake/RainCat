@@ -15,7 +15,7 @@
 		231406FA22BBB4F400659ED7 /* UmbrellaSprite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 231406F922BBB4F400659ED7 /* UmbrellaSprite.swift */; };
 		231406FC22BBBF6700659ED7 /* CatSprite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 231406FB22BBBF6700659ED7 /* CatSprite.swift */; };
 		231406FE22BBC90800659ED7 /* FoodSprite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 231406FD22BBC90800659ED7 /* FoodSprite.swift */; };
-		2314070022BBCB1000659ED7 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 231406FF22BBCB1000659ED7 /* Category.swift */; };
+		2314070022BBCB1000659ED7 /* BitMask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 231406FF22BBCB1000659ED7 /* BitMask.swift */; };
 		2314070C22BBFE6B00659ED7 /* cat_meow_2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2314070522BBFE6A00659ED7 /* cat_meow_2.mp3 */; };
 		2314070D22BBFE6B00659ED7 /* cat_meow_4.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2314070622BBFE6A00659ED7 /* cat_meow_4.mp3 */; };
 		2314071122BBFE6B00659ED7 /* cat_meow_6.wav in Resources */ = {isa = PBXBuildFile; fileRef = 2314070A22BBFE6A00659ED7 /* cat_meow_6.wav */; };
@@ -42,7 +42,7 @@
 		231406F922BBB4F400659ED7 /* UmbrellaSprite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UmbrellaSprite.swift; sourceTree = "<group>"; };
 		231406FB22BBBF6700659ED7 /* CatSprite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatSprite.swift; sourceTree = "<group>"; };
 		231406FD22BBC90800659ED7 /* FoodSprite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodSprite.swift; sourceTree = "<group>"; };
-		231406FF22BBCB1000659ED7 /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
+		231406FF22BBCB1000659ED7 /* BitMask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BitMask.swift; sourceTree = "<group>"; };
 		2314070522BBFE6A00659ED7 /* cat_meow_2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = cat_meow_2.mp3; path = SFX/cat_meow_2.mp3; sourceTree = "<group>"; };
 		2314070622BBFE6A00659ED7 /* cat_meow_4.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = cat_meow_4.mp3; path = SFX/cat_meow_4.mp3; sourceTree = "<group>"; };
 		2314070A22BBFE6A00659ED7 /* cat_meow_6.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = cat_meow_6.wav; path = SFX/cat_meow_6.wav; sourceTree = "<group>"; };
@@ -131,7 +131,7 @@
 				BBA2E4B21D74A62C00853E63 /* Assets.xcassets */,
 				BBA2E4B41D74A62C00853E63 /* LaunchScreen.storyboard */,
 				BBA2E4B71D74A62C00853E63 /* Info.plist */,
-				231406FF22BBCB1000659ED7 /* Category.swift */,
+				231406FF22BBCB1000659ED7 /* BitMask.swift */,
 				230D2E5B22BC59580013BAE5 /* HudNode.swift */,
 				230D2E5F22BC63E00013BAE5 /* Constants.swift */,
 			);
@@ -266,7 +266,7 @@
 				231406FE22BBC90800659ED7 /* FoodSprite.swift in Sources */,
 				230D2E5C22BC59580013BAE5 /* HudNode.swift in Sources */,
 				BBA2E4AC1D74A62C00853E63 /* GameScene.swift in Sources */,
-				2314070022BBCB1000659ED7 /* Category.swift in Sources */,
+				2314070022BBCB1000659ED7 /* BitMask.swift in Sources */,
 				231406F622BB2D6300659ED7 /* BackgroundNode.swift in Sources */,
 				BBA2E4AE1D74A62C00853E63 /* GameViewController.swift in Sources */,
 				BBA2E4A61D74A62C00853E63 /* AppDelegate.swift in Sources */,

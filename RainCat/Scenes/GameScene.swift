@@ -50,7 +50,7 @@ class GameScene: SKScene {
         worldFrame.size.width += 200
         
         self.physicsBody = SKPhysicsBody(edgeLoopFrom: worldFrame)
-        self.physicsBody?.categoryBitMask = BitMask(.world)
+        self.physicsBody?.categoryBitMask = .world
         
         self.physicsWorld.contactDelegate = self
     }
@@ -145,8 +145,8 @@ class GameScene: SKScene {
     private func spawnRaindrop() {
         let raindrop = SKSpriteNode(texture: raindropTexture)
         raindrop.physicsBody = SKPhysicsBody(texture: raindropTexture, size: raindrop.size)
-        raindrop.physicsBody?.categoryBitMask = BitMask(.raindrop)
-        raindrop.physicsBody?.contactTestBitMask = BitMask(.floor | .world)
+        raindrop.physicsBody?.categoryBitMask = .raindrop
+        raindrop.physicsBody?.contactTestBitMask = .floor | .world
         raindrop.physicsBody?.density = 0.5
         let xPos = CGFloat.random(in: 0..<size.width)
         let yPos = size.height + raindrop.size.height
@@ -189,7 +189,7 @@ extension GameScene: SKPhysicsContactDelegate {
     private func handleFoodHit(contact: SKPhysicsContact) {
         guard let (food, other) = contact.mainBodyAs(.food) else { return }
 
-        switch other.category {
+        switch other.categoryBitMask {
         case .cat:
             hudNode.addPoint()
             print("fed cat")
@@ -206,7 +206,7 @@ extension GameScene: SKPhysicsContactDelegate {
     private func handleCatCollision(contact: SKPhysicsContact) {
         guard let (_, other) = contact.mainBodyAs(.cat) else { return }
 
-        switch other.category {
+        switch other.categoryBitMask {
         case .raindrop:
             catNode?.hitByRain()
             hudNode.resetPoints()
@@ -218,7 +218,7 @@ extension GameScene: SKPhysicsContactDelegate {
     }
 
     func didBegin(_ contact: SKPhysicsContact) {
-        //("collision between \(contact.bodyA.category) and \(contact.bodyB.category)")
+        print("collision between \(contact.bodyA.categoryBitMask.categoryName) and \(contact.bodyB.categoryBitMask.categoryName)")
         if let (raindrop, other) = contact.mainBodyAs(.raindrop), other.isCategory(.floor) || other.isCategory(.food){
             raindrop.node?.physicsBody?.collisionBitMask = 0
             raindrop.node?.physicsBody?.categoryBitMask = 0

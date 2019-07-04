@@ -38,8 +38,8 @@ public class CatSprite: SKSpriteNode {
         catSprite.zPosition = 5
 
         catSprite.physicsBody = .init(circleOfRadius: catSprite.size.width / 2)
-        catSprite.physicsBody?.categoryBitMask = BitMask(.cat)
-        catSprite.physicsBody?.contactTestBitMask = BitMask(.raindrop | .world)
+        catSprite.physicsBody?.categoryBitMask = .cat
+        catSprite.physicsBody?.contactTestBitMask = .raindrop | .world
         return catSprite
     }
 

@@ -13,8 +13,8 @@ class FoodSprite: SKSpriteNode {
         let foodDish = FoodSprite(imageNamed: "food_dish")
 
         foodDish.physicsBody = .init(rectangleOf: foodDish.size)
-        foodDish.physicsBody?.categoryBitMask = BitMask(.food)
-        foodDish.physicsBody?.contactTestBitMask = BitMask(.world | .raindrop | .cat)
+        foodDish.physicsBody?.categoryBitMask = .food
+        foodDish.physicsBody?.contactTestBitMask = .world | .raindrop | .cat
         foodDish.zPosition = 5
 
         return foodDish
