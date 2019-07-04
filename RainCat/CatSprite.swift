@@ -9,7 +9,7 @@
 import SpriteKit
 
 public class CatSprite: SKSpriteNode {
-    private let movementSpeed = CGFloat(100)
+    private let movementSpeed = CGFloat(300) //100 original
 
     private var timeSinceLastHit = TimeInterval(2)
     private let maxFlailTime = TimeInterval(2)
@@ -30,7 +30,7 @@ public class CatSprite: SKSpriteNode {
         "cat_meow_1.mp3",
         "cat_meow_2.mp3",
         "cat_meow_4.mp3",
-        "cat_meow_6.mp3"
+        "cat_meow_6.wav"
     ]
 
     public static func newInstance() -> CatSprite {
@@ -47,7 +47,7 @@ public class CatSprite: SKSpriteNode {
         defer { timeSinceLastHit = 0 }
         removeAction(forKey: walkingActionKey)
 
-        guard !isFlailing && action(forKey: meowActionKey) == nil else { return }
+        guard !isFlailing && !SoundManager.sharedInstance.isMuted && action(forKey: meowActionKey) == nil else { return }
         run(.playSoundFileNamed(meowSFX.randomElement()!, waitForCompletion: true), withKey: meowActionKey)
     }
 

@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		230D2E5A22BC57780013BAE5 /* Pixel Digivolve.otf in Resources */ = {isa = PBXBuildFile; fileRef = 230D2E5922BC57780013BAE5 /* Pixel Digivolve.otf */; };
+		230D2E5C22BC59580013BAE5 /* HudNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 230D2E5B22BC59580013BAE5 /* HudNode.swift */; };
+		230D2E5E22BC63000013BAE5 /* MenuScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 230D2E5D22BC63000013BAE5 /* MenuScene.swift */; };
+		230D2E6022BC63E00013BAE5 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 230D2E5F22BC63E00013BAE5 /* Constants.swift */; };
 		231406F622BB2D6300659ED7 /* BackgroundNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 231406F522BB2D6300659ED7 /* BackgroundNode.swift */; };
 		231406FA22BBB4F400659ED7 /* UmbrellaSprite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 231406F922BBB4F400659ED7 /* UmbrellaSprite.swift */; };
 		231406FC22BBBF6700659ED7 /* CatSprite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 231406FB22BBBF6700659ED7 /* CatSprite.swift */; };
@@ -30,6 +34,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		230D2E5922BC57780013BAE5 /* Pixel Digivolve.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Pixel Digivolve.otf"; path = "Fonts/Pixel Digivolve.otf"; sourceTree = "<group>"; };
+		230D2E5B22BC59580013BAE5 /* HudNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HudNode.swift; sourceTree = "<group>"; };
+		230D2E5D22BC63000013BAE5 /* MenuScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuScene.swift; sourceTree = "<group>"; };
+		230D2E5F22BC63E00013BAE5 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		231406F522BB2D6300659ED7 /* BackgroundNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundNode.swift; sourceTree = "<group>"; };
 		231406F922BBB4F400659ED7 /* UmbrellaSprite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UmbrellaSprite.swift; sourceTree = "<group>"; };
 		231406FB22BBBF6700659ED7 /* CatSprite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatSprite.swift; sourceTree = "<group>"; };
@@ -65,6 +73,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		230D2E5622BC57410013BAE5 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				230D2E5922BC57780013BAE5 /* Pixel Digivolve.otf */,
+			);
+			name = Fonts;
+			sourceTree = "<group>";
+		};
 		2314070422BBFE3600659ED7 /* SFX */ = {
 			isa = PBXGroup;
 			children = (
@@ -92,6 +108,7 @@
 			isa = PBXGroup;
 			children = (
 				BBA2E4AB1D74A62C00853E63 /* GameScene.swift */,
+				230D2E5D22BC63000013BAE5 /* MenuScene.swift */,
 			);
 			name = Scenes;
 			sourceTree = "<group>";
@@ -107,6 +124,7 @@
 		BB36AD261D75D70000FB54D0 /* Support */ = {
 			isa = PBXGroup;
 			children = (
+				230D2E5622BC57410013BAE5 /* Fonts */,
 				2314071322BC023700659ED7 /* Music */,
 				2314070422BBFE3600659ED7 /* SFX */,
 				BBA2E4AF1D74A62C00853E63 /* Main.storyboard */,
@@ -114,6 +132,8 @@
 				BBA2E4B41D74A62C00853E63 /* LaunchScreen.storyboard */,
 				BBA2E4B71D74A62C00853E63 /* Info.plist */,
 				231406FF22BBCB1000659ED7 /* Category.swift */,
+				230D2E5B22BC59580013BAE5 /* HudNode.swift */,
+				230D2E5F22BC63E00013BAE5 /* Constants.swift */,
 			);
 			name = Support;
 			sourceTree = "<group>";
@@ -219,6 +239,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2314070C22BBFE6B00659ED7 /* cat_meow_2.mp3 in Resources */,
+				230D2E5A22BC57780013BAE5 /* Pixel Digivolve.otf in Resources */,
 				2314071A22BC024600659ED7 /* bensound-jazzyfrenchy.mp3 in Resources */,
 				2314071822BC024600659ED7 /* bensound-littleidea.mp3 in Resources */,
 				BBA2E4B11D74A62C00853E63 /* Main.storyboard in Resources */,
@@ -241,13 +262,16 @@
 			files = (
 				231406FA22BBB4F400659ED7 /* UmbrellaSprite.swift in Sources */,
 				231406FC22BBBF6700659ED7 /* CatSprite.swift in Sources */,
+				230D2E5E22BC63000013BAE5 /* MenuScene.swift in Sources */,
 				231406FE22BBC90800659ED7 /* FoodSprite.swift in Sources */,
+				230D2E5C22BC59580013BAE5 /* HudNode.swift in Sources */,
 				BBA2E4AC1D74A62C00853E63 /* GameScene.swift in Sources */,
 				2314070022BBCB1000659ED7 /* Category.swift in Sources */,
 				231406F622BB2D6300659ED7 /* BackgroundNode.swift in Sources */,
 				BBA2E4AE1D74A62C00853E63 /* GameViewController.swift in Sources */,
 				BBA2E4A61D74A62C00853E63 /* AppDelegate.swift in Sources */,
 				2314071D22BC027A00659ED7 /* SoundManager.swift in Sources */,
+				230D2E6022BC63E00013BAE5 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

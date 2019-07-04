@@ -15,6 +15,7 @@ class GameScene: SKScene {
     private var lastUpdateTime = TimeInterval(0)
     private var currentRainDropSpawnTime = TimeInterval(0)
     private var rainDropSpawnRate = TimeInterval(0.5)
+    private var rainDropsPerSpawn = 1
     private let foodEdgeMargin = CGFloat(75.0)
 
     private let raindropTexture = SKTexture(imageNamed: "rain_drop")
@@ -23,6 +24,7 @@ class GameScene: SKScene {
     private let umbrellaNode = UmbrellaSprite.newInstance()
     private var catNode: CatSprite?
     private var foodNode: FoodSprite?
+    private let hudNode = HudNode()
 
     // MARK: - SKScene overrides
 
@@ -30,6 +32,9 @@ class GameScene: SKScene {
         self.lastUpdateTime = 0
         backgroundNode.setup(size: size)
         addChild(backgroundNode)
+
+        hudNode.setup(size: size)
+        addChild(hudNode)
         
         umbrellaNode.updatePosition(CGPoint(x: frame.midX, y: frame.midY))
         umbrellaNode.zPosition = 4
@@ -53,17 +58,39 @@ class GameScene: SKScene {
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         guard let touchPoint = touches.first?.location(in: self) else { return }
-        umbrellaNode.setDestination(touchPoint)
+
+        hudNode.touchBeganAtPoint(touchPoint)
+        if !hudNode.quitButtonPressed {
+            umbrellaNode.setDestination(touchPoint)
+        }
     }
     
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
         guard let touchPoint = touches.first?.location(in: self) else { return }
-        umbrellaNode.setDestination(touchPoint)
+
+        hudNode.touchMovedToPoint(touchPoint)
+
+        if !hudNode.quitButtonPressed {
+            umbrellaNode.setDestination(touchPoint)
+        }
+    }
+
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        guard let touchPoint = touches.first?.location(in: self) else { return }
+        hudNode.touchEndedAtPoint(touchPoint) { [weak self] in
+            guard let strongSelf = self else { return }
+            let transition = SKTransition.reveal(with: .up, duration: 0.75)
+            let menuScene = MenuScene(size: strongSelf.size)
+            menuScene.scaleMode = strongSelf.scaleMode
+            strongSelf.view?.presentScene(menuScene, transition: transition)
+        }
     }
     
     override func update(_ currentTime: TimeInterval) {
         // Called before each frame is rendered
-        
+
+        updateRaindropSpawnRate()
+
         // Initialize _lastUpdateTime if it has not already been
         if (self.lastUpdateTime == 0) {
             self.lastUpdateTime = currentTime
@@ -77,7 +104,9 @@ class GameScene: SKScene {
         
         if currentRainDropSpawnTime > rainDropSpawnRate {
             currentRainDropSpawnTime = 0
-            spawnRaindrop()
+            for i in 0..<rainDropsPerSpawn {
+                DispatchQueue.main.asyncAfter(deadline: .now() + (Double(i) * 0.01)) { [weak self] in self?.spawnRaindrop() }
+            }
         }
         
         umbrellaNode.update(deltaTime: dt)
@@ -89,6 +118,29 @@ class GameScene: SKScene {
     }
 
     // MARK: - Spawn functions
+
+    private func updateRaindropSpawnRate() {
+        switch hudNode.score {
+        case 0..<5:
+            rainDropSpawnRate = TimeInterval(0.5)
+            rainDropsPerSpawn = 1
+        case 5..<10:
+            rainDropSpawnRate = TimeInterval(0.4)
+            rainDropsPerSpawn = 2
+        case 10..<15:
+            rainDropSpawnRate = TimeInterval(0.3)
+            rainDropsPerSpawn = 3
+        case 15..<20:
+            rainDropSpawnRate = TimeInterval(0.3)
+            rainDropsPerSpawn = 4
+        case 20..<25:
+            rainDropSpawnRate = TimeInterval(0.3)
+            rainDropsPerSpawn = 5
+        default:
+            rainDropSpawnRate = TimeInterval(0.3)
+            rainDropsPerSpawn = 6
+        }
+    }
     
     private func spawnRaindrop() {
         let raindrop = SKSpriteNode(texture: raindropTexture)
@@ -111,13 +163,14 @@ class GameScene: SKScene {
         catNode?.position = CGPoint(x: umbrellaNode.position.x, y: umbrellaNode.position.y - 30)
 
         addChild(catNode!)
+        hudNode.resetPoints()
     }
 
     private func spawnFood() {
         if let currentFood = foodNode, children.contains(currentFood) {
             removeNode(currentFood)
         }
-        var randomPosition = CGFloat.random(in: 0..<(size.width - foodEdgeMargin * 2))
+        let randomPosition = CGFloat.random(in: 0..<(size.width - foodEdgeMargin * 2))
 
         foodNode = FoodSprite.newInstance()
         foodNode!.position = CGPoint(x: randomPosition + foodEdgeMargin, y: size.height)
@@ -138,7 +191,7 @@ extension GameScene: SKPhysicsContactDelegate {
 
         switch other.category {
         case .cat:
-            //TODO: increment points
+            hudNode.addPoint()
             print("fed cat")
             fallthrough
         case .world:
@@ -156,6 +209,7 @@ extension GameScene: SKPhysicsContactDelegate {
         switch other.category {
         case .raindrop:
             catNode?.hitByRain()
+            hudNode.resetPoints()
         case .world:
             spawnCat()
         default:
@@ -164,7 +218,7 @@ extension GameScene: SKPhysicsContactDelegate {
     }
 
     func didBegin(_ contact: SKPhysicsContact) {
-        print("collision between \(contact.bodyA.category) and \(contact.bodyB.category)")
+        //("collision between \(contact.bodyA.category) and \(contact.bodyB.category)")
         if let (raindrop, other) = contact.mainBodyAs(.raindrop), other.isCategory(.floor) || other.isCategory(.food){
             raindrop.node?.physicsBody?.collisionBitMask = 0
             raindrop.node?.physicsBody?.categoryBitMask = 0

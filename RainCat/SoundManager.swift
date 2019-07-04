@@ -12,7 +12,19 @@ class SoundManager: NSObject, AVAudioPlayerDelegate {
     static let sharedInstance = SoundManager()
 
     var audioPlayer: AVAudioPlayer?
-    var trackPosition = 0
+    var trackPosition = Int.random(in: 0..<SoundManager.tracks.count)
+    var isMuted = UserDefaults.standard.bool(forKey: Constants.muteKey) {
+        didSet {
+            UserDefaults.standard.set(isMuted, forKey: Constants.muteKey)
+            UserDefaults.standard.synchronize()
+
+            if isMuted {
+                audioPlayer?.stop()
+            } else {
+                startPlaying()
+            }
+        }
+    }
 
     //Music: http://www.bensound.com/royalty-free-music
     static private let tracks = [
@@ -22,13 +34,8 @@ class SoundManager: NSObject, AVAudioPlayerDelegate {
         "bensound-littleidea"
     ]
 
-    private override init() {
-        trackPosition = Int.random(in: 0..<SoundManager.tracks.count)
-    }
-
     public func startPlaying() {
-        guard audioPlayer?.isPlaying != true else {
-            print("Audio player is already playing!")
+        guard !isMuted && audioPlayer?.isPlaying != true else {
             return
         }
 
